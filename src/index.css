@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:where(.css-dev-only-do-not-override-1st9j6v).ant-breadcrumb ol {
+  align-items: center;
+}
+
+.gridThreeCols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  gap: 15px;
+}
+
+.gridClients {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.gridReferrals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 15px;
+}
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.textGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.ant-table-thead tr th {
+  text-wrap: nowrap;
+}
+
+.ant-table-expanded-row ul,
+.ant-table-expanded-row h4 {
+  text-align: left;
+}
+
+.ant-table-expanded-row h4 {
+  font-style: italic;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.selectDate .ant-select-selector {
+  border: none !important;
+}
+
+.statsSelect .ant-select-selector {
+  background-color: var(--bg-third-color) !important;
+  border-radius: 8px;
+}
+
+.ant-switch-inner-checked,
+.ant-switch-inner-unchecked {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  border: none;
+}
+
+.gradient-border {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Using the pseudo-element method for gradient border */
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--primary-color), #000000);
+  z-index: -1;
+}
+
+.gradient-border-content {
+  background-color: white; /* Or any background color you want inside the circle */
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.gradient-text {
+  background: linear-gradient(180deg, var(--primary-color), #000000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+.ant-dropdown .ant-dropdown-menu {
+  padding: 10px !important;
+}
+
+.PhoneInputInput {
+  background-color: transparent;
+}
+
+.PhoneInputInput:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgb(191, 191, 191) !important;
+  font-size: 12px !important;
+}
+
+.ant-select-item {
+  color: var(--text-primary-color) !important;
+  background-color: var(--bg-primary-color) !important;
+}
+
+.ant-select-item-option-selected {
+  background-color: var(--bg-secondary-color) !important;
+}
+
+.ant-tag {
+  background-color: var(--bg-secondary-color) !important;
+  color: var(--text-primary-color) !important;
+}
+
+.ant-select-arrow {
+  color: #989696 !important;
+}
+
+.ant-btn {
+  box-shadow: none !important;
+}
+
+.ant-tag .ant-tag-close-icon {
+  color: var(--text-primary-color) !important;
+}
+
+.submitButton {
+  padding: 8px 40px;
+  background-color: var(--primary-color);
+  color: white;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  min-width: 100px;
+  transition: opacity 0.3s ease;
+}
+
+.submitButton:hover {
+  opacity: 0.8;
+}
+
+.submitButton:disabled {
+  opacity: 0.8;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  height: 32px;
+  padding: 8px 40px;
+  border: 1px solid var(--border-primary-color);
+  background-color: var(--bg-primary-color);
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.hideScrollbar {
+  overflow: -moz-scrollbars-none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  overflow-y: scroll; /* Enable scrolling */
+}
+
+.hideScrollbar::-webkit-scrollbar {
+  width: 0 !important; /* Chrome, Safari, Opera*/
+  display: none;
+}
+
+.ant-collapse-item {
+  border-bottom: 1px solid var(--border-primary-color) !important;
+}
+
+.ant-select-selection-placeholder {
+  color: rgb(191, 191, 191) !important;
+  font-size: 12px !important;
+}
+
+.ant-modal-close-icon {
+  color: var(--text-primary-color) !important;
+}
+
+.defaultSelect {
+  background-color: var(--bg-primary-color) !important;
+  color: var(--text-primary-color) !important;
+  border: 1px solid var(--border-primary-color) !important;
+  border-radius: 8px !important;
+}
+
+.ant-slider-rail {
+  background-color: var(--bg-secondary-color) !important;
+}
+
+circle {
+  fill: var(--bg-secondary-color) !important;
+}
+
+/* This targets the country select dropdown of PhoneInput */
+.PhoneInputCountrySelect {
+  background-color: #000000ad !important;
+  color: white !important;
+}

@@ -1,0 +1,16 @@
+:root {
+  --primary-color: rgb(0, 112, 255);
+  --secondary-color: rgb(113, 192, 255);
+  --typography-color: rgb(0, 0, 0);
+  --bg-primary-color: rgb(255, 255, 255);
+  --bg-secondary-color: rgb(243, 243, 243);
+  --bg-third-color: rgb(26, 26, 26);
+  --text-primary-color: rgb(0, 0, 0);
+  --border-primary-color: rgb(197, 197, 197);
+}
+
+.html,
+body {
+  background: var(--bg-primary-color);
+  color: var(--text-primary-color);
+}

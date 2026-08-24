@@ -1,0 +1,90 @@
+/* Sort and Filter Container Styles */
+.SortContainer,
+.FilterContainer {
+  background: var(--bg-third-color);
+  border: 1px solid var(--border-primary-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.SortHeader,
+.FilterHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  color: #333;
+  font-size: 16px;
+}
+
+.SortOptions,
+.FilterOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.SortOption,
+.FilterOption {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.SortOption label,
+.FilterOption label {
+  font-size: 14px;
+  color: var(--text-primary-color);
+}
+
+.SortButtons,
+.FilterButtons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Button styles (keep your existing button styles) */
+.btn {
+  height: 32px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  border: 1px solid #d9d9d9 !important;
+  background-color: var(--bg-third-color) !important;
+  color: var(--text-primary-color) !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+.btn:hover {
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+.active_btn {
+  height: 32px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  background-color: var(--primary-color) !important;
+  border: 1px solid var(--primary-color) !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .SortButtons,
+  .FilterButtons {
+    flex-wrap: wrap;
+  }
+
+  .SortButtons button,
+  .FilterButtons button {
+    flex: 1 0 calc(50% - 4px);
+  }
+}
