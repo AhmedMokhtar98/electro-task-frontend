@@ -1,0 +1,126 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: electro-task-frontend-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_HOST_KEY: ${{ secrets.VPS_HOST_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          printf '%s %s\n' \
+            "$VPS_HOST" \
+            "$VPS_HOST_KEY" \
+            > ~/.ssh/known_hosts
+
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Upload frontend source
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          rsync \
+            -az \
+            --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.env' \
+            --exclude='.env.*' \
+            --exclude='node_modules/' \
+            --exclude='dist/' \
+            --exclude='*.log' \
+            -e "ssh -i ~/.ssh/deploy_key -p $VPS_PORT -o BatchMode=yes -o ConnectTimeout=30" \
+            ./ \
+            "$VPS_USER@$VPS_HOST:/var/www/electro-task-frontend/"
+
+      - name: Install and build frontend
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          ssh \
+            -i ~/.ssh/deploy_key \
+            -p "$VPS_PORT" \
+            -o BatchMode=yes \
+            -o ConnectTimeout=30 \
+            "$VPS_USER@$VPS_HOST" <<'REMOTE'
+          set -e
+
+          cd /var/www/electro-task-frontend
+
+          if [ ! -f ".env" ] && [ ! -f ".env.production" ]; then
+            echo "Missing frontend .env or .env.production file."
+            exit 1
+          fi
+
+          echo "Installing dependencies..."
+          npm ci
+
+          echo "Building frontend..."
+          npm run build
+
+          if [ ! -f "dist/index.html" ]; then
+            echo "Build failed: dist/index.html was not created."
+            exit 1
+          fi
+
+          echo "Frontend build completed successfully."
+          REMOTE
+
+      - name: Verify frontend
+        run: |
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --output /dev/null \
+            --retry 5 \
+            --retry-delay 3 \
+            --retry-all-errors \
+            https://electro-task.hostwover.com
+
+      - name: Verify React Router fallback
+        run: |
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --output /dev/null \
+            --retry 3 \
+            --retry-delay 2 \
+            --retry-all-errors \
+            https://electro-task.hostwover.com/login
+
+      - name: Deployment summary
+        if: success()
+        run: |
+          echo "### Frontend deployed successfully" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Website: https://electro-task.hostwover.com" >> "$GITHUB_STEP_SUMMARY"
+          echo "- API: https://electro-api.hostwover.com" >> "$GITHUB_STEP_SUMMARY"

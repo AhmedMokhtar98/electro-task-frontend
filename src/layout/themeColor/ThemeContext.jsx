@@ -28,6 +28,8 @@ const getInitialTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [themeMode, setThemeMode] = useState(getInitialTheme);
+  const [forcedThemeMode, setForcedThemeMode] = useState(null);
+  const activeThemeMode = forcedThemeMode || themeMode;
 
   const [themeData, setThemeData] = useState({
     primary_color: "#0070ff",
@@ -41,12 +43,11 @@ export const ThemeProvider = ({ children }) => {
     const primary = tinycolor(themeData.primary_color).toRgb();
     const secondary = tinycolor(themeData.secondary_color).toRgb();
     const typography = tinycolor(themeData.typography).toRgb();
-    const isLight = themeMode === "light";
+    const isLight = activeThemeMode === "light";
 
     root.classList.toggle("dark", !isLight);
-    root.dataset.theme = themeMode;
+    root.dataset.theme = activeThemeMode;
     root.style.colorScheme = isLight ? "light" : "dark";
-    localStorage.setItem("theme", themeMode);
 
     root.style.setProperty(
       "--primary-color",
@@ -80,11 +81,15 @@ export const ThemeProvider = ({ children }) => {
       "--border-primary-color",
       isLight ? "rgb(226 232 240)" : "rgb(51 65 85)",
     );
-  }, [themeData, themeMode]);
+  }, [themeData, activeThemeMode]);
+
+  useEffect(() => {
+    localStorage.setItem("theme", themeMode);
+  }, [themeMode]);
 
   const antdTheme = useMemo(
-    () => generateTheme({ ...themeData, mode: themeMode }),
-    [themeData, themeMode],
+    () => generateTheme({ ...themeData, mode: activeThemeMode }),
+    [themeData, activeThemeMode],
   );
 
   const toggleTheme = useCallback(() => {
@@ -93,14 +98,15 @@ export const ThemeProvider = ({ children }) => {
 
   const contextValue = useMemo(
     () => ({
-      themeMode,
+      themeMode: activeThemeMode,
       themeData,
       antdTheme,
       setThemeData,
       setThemeMode,
+      setForcedThemeMode,
       toggleTheme,
     }),
-    [themeMode, themeData, antdTheme, toggleTheme],
+    [activeThemeMode, themeData, antdTheme, toggleTheme],
   );
 
   return (

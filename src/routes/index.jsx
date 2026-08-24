@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useLayoutEffect } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import { Spin } from "antd";
 import PreventRoute from "./PreventRoute";
@@ -11,6 +11,7 @@ import Register from "@/pages/auth/Register";
 import EmailConfirmation from "@/pages/auth/EmailConfirmation";
 import ResetPassword from "@/pages/auth/ResetPassword";
 import ForgotPassword from "@/pages/auth/ForgotPassword";
+import { useTheme } from "@/layout/themeColor/ThemeContext";
 
 const Login = lazy(() => import("../pages/auth/Login"));
 
@@ -26,16 +27,29 @@ const PrivateLayout = () => (
   </Layout>
 );
 
+const LightThemeRoute = () => {
+  const { setForcedThemeMode } = useTheme();
+
+  useLayoutEffect(() => {
+    setForcedThemeMode("light");
+
+    return () => setForcedThemeMode(null);
+  }, [setForcedThemeMode]);
+
+  return <Outlet />;
+};
+
 const AllRoutes = () => (
   <Suspense fallback={<PageLoader />}>
     <Routes>
       <Route element={<PreventRoute />}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/email-confirmation" element={<EmailConfirmation />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-
+        <Route element={<LightThemeRoute />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/email-confirmation" element={<EmailConfirmation />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+        </Route>
       </Route>
 
       <Route element={<PrivateRoute />}>
