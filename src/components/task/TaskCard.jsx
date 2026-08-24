@@ -33,7 +33,7 @@ const TaskCard = ({
   return (
     <article
       ref={setNodeRef}
-      style={{ ...style, touchAction: "none" }}
+      style={{ ...style, touchAction: "manipulation" }}
       className={`relative select-none overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-4 shadow-[0_14px_35px_-28px_rgba(15,23,42,0.65)] transition-[border-color,box-shadow,opacity] before:absolute before:inset-y-0 before:left-0 before:w-1 dark:border-white/[0.07] dark:bg-[#1b1b1b]/95 ${cardAccentStyles[task.status]} ${
         isOverlay
           ? "cursor-grabbing border-emerald-300 shadow-2xl ring-2 ring-emerald-500/30 dark:border-emerald-700"

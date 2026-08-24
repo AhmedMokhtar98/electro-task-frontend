@@ -13,7 +13,7 @@ import { generateTheme } from "./generateTheme";
 const ThemeContext = createContext(null);
 
 const getInitialTheme = () => {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
 
   const storedTheme = localStorage.getItem("theme");
 
@@ -21,9 +21,7 @@ const getInitialTheme = () => {
     return storedTheme;
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  return "light";
 };
 
 export const ThemeProvider = ({ children }) => {

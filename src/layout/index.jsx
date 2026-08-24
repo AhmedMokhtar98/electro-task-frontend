@@ -8,7 +8,7 @@ const PageContainer = ({ children }) => {
         relative z-[1]
         mx-auto
         h-full
-        min-h-full
+        min-h-0
         w-[96%]
         overflow-hidden
         rounded-[10px]
@@ -17,10 +17,12 @@ const PageContainer = ({ children }) => {
     >
       <div
         className="
-          h-full w-full
+          h-full min-h-0 w-full
           overflow-x-hidden overflow-y-auto
+          overscroll-y-contain touch-pan-y
           transition-all duration-300 ease-in-out
-          pb-20 md:pb-0
+          pb-24 md:pb-0
+          [-webkit-overflow-scrolling:touch]
           [scrollbar-width:none]
           [-ms-overflow-style:none]
           [&::-webkit-scrollbar]:hidden
@@ -37,7 +39,7 @@ const DashboardLayout = ({ children }) => {
     <div
       className="
         relative flex
-        min-h-screen w-full
+        h-screen h-dvh min-h-0 w-full
         overflow-hidden
         bg-[linear-gradient(45deg,#9effa261,#00b0ff33)]
         transition-colors duration-300
