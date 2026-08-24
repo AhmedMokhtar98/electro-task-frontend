@@ -1,6 +1,5 @@
 import { Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
@@ -11,14 +10,13 @@ import { logout } from "@/redux/slices/authDataSlice";
 export default function UserBadge() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
 
   const { authData } = useSelector((state) => state.authData);
 
   const fullName =
     [authData?.firstName, authData?.lastName]
       .filter(Boolean)
-      .join(" ") || t("User Name");
+      .join(" ") || "User Name";
 
   const handleLogout = () => {
     dispatch(logout());
@@ -29,7 +27,7 @@ export default function UserBadge() {
     {
       key: "profile",
       icon: <CgProfile className="size-5" />,
-      label: t("Profile"),
+      label: "Profile",
       onClick: () => navigate("/profile"),
     },
     {
@@ -39,7 +37,7 @@ export default function UserBadge() {
       key: "logout",
       danger: true,
       icon: <CiLogout className="size-5" />,
-      label: t("Log out"),
+      label: "Log out",
       onClick: handleLogout,
     },
   ];

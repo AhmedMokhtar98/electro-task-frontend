@@ -1,6 +1,3 @@
-import { useTranslation } from "react-i18next";
-import PropTypes from "prop-types";
-
 import Header from "./Header/Header";
 import DashboardSidebar from "./sidebar/Sidebar";
 
@@ -23,6 +20,7 @@ const PageContainer = ({ children }) => {
           h-full w-full
           overflow-x-hidden overflow-y-auto
           transition-all duration-300 ease-in-out
+          pb-20 md:pb-0
           [scrollbar-width:none]
           [-ms-overflow-style:none]
           [&::-webkit-scrollbar]:hidden
@@ -34,20 +32,9 @@ const PageContainer = ({ children }) => {
   );
 };
 
-PageContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
 const DashboardLayout = ({ children }) => {
-  const { i18n } = useTranslation();
-
-  const direction = i18n.dir(
-    i18n.resolvedLanguage || i18n.language,
-  );
-
   return (
     <div
-      dir={direction}
       className="
         relative flex
         min-h-screen w-full
@@ -67,10 +54,6 @@ const DashboardLayout = ({ children }) => {
       </div>
     </div>
   );
-};
-
-DashboardLayout.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default DashboardLayout;

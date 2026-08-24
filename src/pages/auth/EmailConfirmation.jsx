@@ -111,7 +111,7 @@ const resendCode = async () => {
     setCooldownExpiresAt(nextExpiresAt);
     setRemainingSeconds(RESEND_SECONDS);
   } catch (error) {
-    showToast({ text: error?.response?.data?.message || error?.response?.data?.error || error?.message || "Unable to resend the confirmation code", status: false, });
+    //already handled in useGetData
   } finally {
     // Always stop the Sending... state
     setResendLoading(false);

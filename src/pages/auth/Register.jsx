@@ -1,7 +1,6 @@
 import { Button, Checkbox } from "antd";
 import { Form, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import {
   RiArrowRightLine,
@@ -33,7 +32,6 @@ const dashboardFeatures = [
 ];
 
 export default function Register() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const { postData } = usePostData();
 
@@ -188,11 +186,11 @@ export default function Register() {
                 </p>
 
                 <h2 className="text-[27px] font-bold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
-                  {t("Create your account")}
+                  Create your account
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-500 sm:mt-3 dark:text-slate-400">
-                  {t("Start organizing your tasks in one place")}
+                  Start organizing your tasks in one place
                 </p>
               </header>
 
@@ -285,9 +283,9 @@ export default function Register() {
                         }}
                       >
                         <span className="text-sm leading-5 text-slate-600 dark:text-slate-300">
-                          {t("I agree to the")}{" "}
+                          {"I agree to the"}{" "}
                           <span className="font-semibold text-emerald-600 transition-colors hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300">
-                            {t("Terms and Conditions")}
+                            {"Terms and Conditions"}
                           </span>
                         </span>
                       </Checkbox>
@@ -295,7 +293,7 @@ export default function Register() {
                       {touched.acceptTerms &&
                         errors.acceptTerms && (
                           <p className="ml-6 mt-1.5 text-xs text-red-500">
-                            {t(errors.acceptTerms)}
+                            {errors.acceptTerms}
                           </p>
                         )}
                     </div>
@@ -310,7 +308,7 @@ export default function Register() {
                       className="group !flex !h-12 !items-center !justify-center !rounded-xl !border-0 !bg-emerald-600 !font-semibold !text-white !shadow-none hover:!bg-emerald-700 disabled:!cursor-not-allowed disabled:!opacity-70"
                     >
                       <span className="flex items-center justify-center gap-2">
-                        {t("Create account")}
+                        {"Create account"}
 
                         {!isSubmitting && (
                           <RiArrowRightLine
@@ -325,19 +323,19 @@ export default function Register() {
                       <span className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
 
                       <span className="text-[11px] text-slate-400">
-                        {t("Already registered?")}
+                        Already registered?
                       </span>
 
                       <span className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
                     </div>
 
                     <p className="text-center text-sm text-slate-500 lg:mt-7 dark:text-slate-400">
-                      {t("Already have an account?")}{" "}
+                      {"Already have an account?"}{" "}
                       <Link
                         to="/login"
                         className="font-semibold text-emerald-600 transition-colors hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300"
                       >
-                        {t("Sign in")}
+                        {"Sign in"}
                       </Link>
                     </p>
                   </Form>

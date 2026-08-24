@@ -6,7 +6,6 @@ import { store } from "./redux/store";
 import "react-toastify/dist/ReactToastify.css"; // Ensure this import is present
 import "./index.css";
 import "leaflet/dist/leaflet.css";
-import "./i18n"; // Import the i18n configuration
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>

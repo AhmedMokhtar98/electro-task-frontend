@@ -1,5 +1,4 @@
 import { Breadcrumb } from "antd";
-import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 
 const formatLabel = (value) =>
@@ -8,7 +7,6 @@ const formatLabel = (value) =>
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 
 export default function Breadcrumbs() {
-  const { t } = useTranslation();
   const location = useLocation();
 
   const pathnames = location.pathname
@@ -35,7 +33,7 @@ export default function Breadcrumbs() {
     key: "dashboard",
     title: (
       <Link className={linkClassName} to="/">
-        {t("Dashboard")}
+        {"Dashboard"}
       </Link>
     ),
   };
@@ -51,7 +49,7 @@ export default function Breadcrumbs() {
               className={linkClassName}
               to="/clients/list?page=1&limit=10"
             >
-              {t("clients")}
+              {"clients"}
             </Link>
           ),
         },
@@ -59,7 +57,7 @@ export default function Breadcrumbs() {
           key: "profile",
           title: (
             <span className={activeClassName}>
-              {t("profile")}
+              {"profile"}
             </span>
           ),
         },
@@ -70,22 +68,18 @@ export default function Breadcrumbs() {
           .join("/")}`;
 
         const isLast = index === pathnames.length - 1;
-        const translatedName = t(name, {
-          defaultValue: formatLabel(name),
-        });
-
         return {
           key: routeTo,
           title: isLast ? (
             <span className={activeClassName}>
-              {translatedName}
+              {formatLabel(name)}
             </span>
           ) : (
             <Link
               className={linkClassName}
               to={`${routeTo}/list?page=1&limit=10`}
             >
-              {translatedName}
+              {formatLabel(name)}
             </Link>
           ),
         };

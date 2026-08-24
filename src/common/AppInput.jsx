@@ -2,12 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Checkbox, Input, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { Field, getIn, useFormikContext } from "formik";
-import { useTranslation } from "react-i18next";
 import { HexColorPicker } from "react-colorful";
-import {
-  AiOutlineEye,
-  AiOutlineEyeInvisible,
-} from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible, } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 
 const AppInput = ({
@@ -24,7 +20,6 @@ const AppInput = ({
   showPasswordRequirements = true,
   ...props
 }) => {
-  const { t } = useTranslation();
   const location = useLocation();
 
   const {
@@ -283,7 +278,7 @@ const AppInput = ({
                   </svg>
 
                   <span>
-                    {t(requirement.text)}
+                    {requirement.text}
                   </span>
                 </div>
               ),
@@ -306,7 +301,7 @@ const AppInput = ({
           htmlFor={name}
           className="mb-2 ml-2 block text-sm font-medium text-slate-900 dark:text-slate-100"
         >
-          {t(label)}
+          {label}
 
           {is_required && (
             <span className="ml-1 text-red-500">
@@ -327,8 +322,8 @@ const AppInput = ({
           }}
           onBlur={handleBlur}
           placeholder={
-            t(placeholder) ||
-            `${t("Select")} ${t(label)}`
+            placeholder ||
+            `${"Select"} ${label}`
           }
           size="large"
           disabled={disabled}
@@ -344,8 +339,8 @@ const AppInput = ({
             onClick={handleInputClick}
             readOnly
             placeholder={
-              t(placeholder) ||
-              t("Select Color")
+              placeholder ||
+              "Select Color"
             }
             size="large"
             prefix={icon}
@@ -389,8 +384,8 @@ const AppInput = ({
             onFocus={handleFocus}
             onBlur={handleBlur}
             placeholder={
-              t(placeholder) ||
-              `${t("Enter Your")} ${t(label)}`
+              placeholder ||
+              `${"Enter Your"} ${label}`
             }
             size="large"
             prefix={icon}
@@ -399,8 +394,8 @@ const AppInput = ({
                 type="button"
                 aria-label={
                   showPassword
-                    ? t("Hide password")
-                    : t("Show password")
+                    ? "Hide password"
+                    : "Show password"
                 }
                 onClick={() => {
                   setShowPassword(
@@ -446,8 +441,8 @@ const AppInput = ({
           name={name}
           type={type || "text"}
           placeholder={
-            t(placeholder) ||
-            `${t("Enter Your")} ${t(label)}`
+            placeholder ||
+            `${"Enter Your"} ${label}`
           }
           size="large"
           prefix={icon}

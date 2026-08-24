@@ -61,6 +61,29 @@ const navigationItems = [
   }
 ];
 
+const mobileNavigationItems = [
+  {
+    key: "all-tasks",
+    icon: RiFileList3Line,
+    label: "All",
+  },
+  {
+    key: "to-do",
+    icon: RiCheckboxBlankCircleLine,
+    label: "To Do",
+  },
+  {
+    key: "in-progress",
+    icon: RiLoader4Line,
+    label: "In Progress",
+  },
+  {
+    key: "done",
+    icon: RiCheckboxCircleLine,
+    label: "Done",
+  },
+];
+
 export default function DashboardSidebar({
   brandName = "Electro Task",
   activeKey = "all-tasks",
@@ -97,7 +120,7 @@ export default function DashboardSidebar({
     <>
       <div
         aria-hidden="true"
-        className={`h-screen shrink-0 transition-[width] duration-300 ${
+        className={`hidden h-screen shrink-0 transition-[width] duration-300 md:block ${
           collapsed ? "w-[88px]" : "w-[264px]"
         }`}
       />
@@ -108,7 +131,7 @@ export default function DashboardSidebar({
         collapsed={collapsed}
         trigger={null}
         theme="light"
-        className="!fixed !bottom-0 !left-0 !top-0 z-40 !h-screen shrink-0 overflow-hidden border-e border-slate-200 !bg-white shadow-[8px_0_30px_rgba(15,23,42,0.04)] transition-all duration-300 dark:border-slate-800 dark:!bg-[#171717] dark:shadow-[8px_0_30px_rgba(0,0,0,0.18)]"
+        className="!fixed !bottom-0 !left-0 !top-0 z-40 !hidden !h-screen shrink-0 overflow-hidden border-e border-slate-200 !bg-white shadow-[8px_0_30px_rgba(15,23,42,0.04)] transition-all duration-300 dark:border-slate-800 dark:!bg-[#171717] dark:shadow-[8px_0_30px_rgba(0,0,0,0.18)] md:!block"
       >
       <div className="flex h-full flex-col px-3 py-4">
         <div
@@ -177,6 +200,40 @@ export default function DashboardSidebar({
         </div>
       </div>
       </Sider>
+
+      <nav
+        aria-label="Task status navigation"
+        className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-4 border-t border-slate-200 bg-white/95 px-2 pb-[env(safe-area-inset-bottom)] shadow-[0_-10px_30px_rgba(15,23,42,0.1)] backdrop-blur-md dark:border-white/[0.08] dark:bg-[#171717]/95 md:hidden"
+      >
+        {mobileNavigationItems.map(({ key, icon: Icon, label }) => {
+          const selected = selectedKey === key;
+
+          return (
+            <button
+              key={key}
+              aria-current={selected ? "page" : undefined}
+              className={`flex min-h-16 min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-1 py-2 text-[11px] font-semibold transition-colors ${
+                selected
+                  ? "text-emerald-600 dark:text-emerald-400"
+                  : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white"
+              }`}
+              type="button"
+              onClick={() => handleMenuClick({ key })}
+            >
+              <span
+                className={`grid h-8 w-8 place-items-center rounded-xl transition-colors ${
+                  selected
+                    ? "bg-emerald-100 dark:bg-emerald-500/15"
+                    : "bg-transparent"
+                }`}
+              >
+                <Icon size={19} />
+              </span>
+              <span className="w-full truncate">{label}</span>
+            </button>
+          );
+        })}
+      </nav>
     </>
   );
 }

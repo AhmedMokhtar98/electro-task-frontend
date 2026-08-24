@@ -18,7 +18,6 @@ A responsive task-management dashboard built for Electro Pi. The application pro
 - Toast notifications and API error handling
 - Reusable GET, POST, PUT, and DELETE hooks
 - Search, filter, sorting, date-range, and infinite-scroll controls
-- Arabic translation resources with `i18next`
 
 ## Tech Stack
 
@@ -29,7 +28,6 @@ A responsive task-management dashboard built for Electro Pi. The application pro
 - [Axios](https://axios-http.com/)
 - [Ant Design](https://ant.design/) and [Tailwind CSS](https://tailwindcss.com/)
 - [Formik](https://formik.org/) and [Yup](https://github.com/jquense/yup)
-- [i18next](https://www.i18next.com/)
 - [CryptoJS](https://cryptojs.gitbook.io/docs/)
 
 ## Getting Started
@@ -114,7 +112,6 @@ src/
 |-- common/              # Shared form and UI components
 |-- components/          # Feature-level UI components
 |-- hooks/               # Reusable React hooks
-|-- i18n/                # Localization setup and translations
 |-- layout/              # Dashboard shell, header, sidebar, and theming
 |-- pages/               # Authentication, home, task, and profile pages
 |-- redux/               # Redux store and authentication state

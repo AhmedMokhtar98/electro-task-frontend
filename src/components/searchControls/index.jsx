@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Input, Select } from "antd";
 import { ReloadOutlined, SearchOutlined } from "@ant-design/icons";
 import { useSearchParams } from "react-router-dom";
-import { SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal, X } from "lucide-react";
 import { initialFilters, priorityOptions, sortOptions, statusOptions, } from "../../utils/constants";
 
 const controlClass = "h-12 rounded-2xl border border-slate-200 bg-slate-50/80 transition-colors hover:border-slate-300 dark:border-white/[0.08] dark:bg-black/25 dark:hover:border-white/[0.14]";
@@ -122,14 +122,28 @@ const SearchControls = ({ total, loading }) => {
           onChange={(value) => changeFilter("priority", value)}
         />
 
-        <Input
-          aria-label="Filter tasks by due date"
-          className={`${controlClass} cursor-pointer px-3`}
-          type="date"
-          value={filters.dueDate}
-          onClick={(event) => event.currentTarget.showPicker?.()}
-          onChange={(event) => changeFilter("dueDate", event.target.value)}
-        />
+        <div className="relative min-w-0">
+          <Input
+            aria-label="Filter tasks by due date"
+            className={`${controlClass} w-full cursor-pointer px-3`}
+            type="date"
+            value={filters.dueDate}
+            onClick={(event) => event.currentTarget.showPicker?.()}
+            onChange={(event) => changeFilter("dueDate", event.target.value)}
+          />
+
+          {filters.dueDate && (
+            <button
+              aria-label="Clear due date filter"
+              className="absolute right-10 top-1/2 z-10 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full text-slate-400 transition-colors hover:bg-slate-200/70 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:hover:bg-white/10 dark:hover:text-white"
+              title="Clear due date"
+              type="button"
+              onClick={() => changeFilter("dueDate", "")}
+            >
+              <X size={15} strokeWidth={2.2} />
+            </button>
+          )}
+        </div>
 
         <Select
           aria-label="Sort tasks"
