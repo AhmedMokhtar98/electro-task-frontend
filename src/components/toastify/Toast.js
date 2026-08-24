@@ -1,7 +1,6 @@
 // src/components/Toast/Toast.js
 import { toast } from 'react-toastify';
 import { asyncOperation } from '../../utils/helpers';
-import './style.css'
 export const showToast = ({ text, status, time = 3000 }) => {
   const options = {
     position:'top-right',

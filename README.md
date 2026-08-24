@@ -153,8 +153,6 @@ The task screen derives its filter state from the URL. This makes filtered views
 | `dueDate` | `2026-08-24` | Filter by an exact due date. |
 | `sortBy` | `dueDate` | Sort field. |
 | `sortOrder` | `asc` | Sort direction: `asc` or `desc`. |
-| `page` | `2` | Requested result page. |
-| `limit` | `9` | Number of tasks per page. |
 
 Default values are omitted from the URL.
 
