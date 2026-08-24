@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { SlidersHorizontal, X } from "lucide-react";
 import { initialFilters, priorityOptions, sortOptions, statusOptions, } from "../../utils/constants";
 
-const controlClass = "h-12 rounded-2xl border border-slate-200 bg-slate-50/80 transition-colors hover:border-slate-300 dark:border-white/[0.08] dark:bg-black/25 dark:hover:border-white/[0.14]";
+const controlClass = "h-[52px] rounded-2xl border border-slate-200 bg-slate-50/80 transition-colors hover:border-slate-300 dark:border-white/[0.08] dark:bg-black/25 dark:hover:border-white/[0.14] sm:h-12";
 const selectClass = `${controlClass} [&_.ant-select-selector]:!h-full [&_.ant-select-selector]:!rounded-2xl [&_.ant-select-selector]:!bg-transparent [&_.ant-select-selection-item]:!leading-[46px]`;
 const searchPattern = /^[\p{L}\p{M}\p{N}' -]*$/u;
 

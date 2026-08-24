@@ -322,7 +322,7 @@ const AppInput = ({
           }
           size="large"
           disabled={disabled}
-          className="app-input-select w-full overflow-hidden placeholder:text-xs disabled:opacity-60"
+          className="app-input-select h-[52px] w-full placeholder:text-xs disabled:opacity-60 sm:h-auto max-sm:[&_.ant-select-selector]:!h-[52px] max-sm:[&_.ant-select-selection-wrap]:!h-[50px] max-sm:[&_.ant-select-selection-item]:!leading-[50px]"
         />
       ) :  type === "password" ? (
         <>
@@ -369,7 +369,7 @@ const AppInput = ({
               </button>
             }
             disabled={disabled}
-            className="mt-2 rounded-xl !border-slate-300 placeholder:text-xs focus:!border-emerald-500 focus:!shadow-[0_0_0_2px_rgba(16,185,129,0.12)] disabled:text-[var(--text-primary-color)] disabled:opacity-60 dark:!border-slate-700"
+            className="mt-2 rounded-xl !border-slate-300 placeholder:text-xs focus:!border-emerald-500 focus:!shadow-[0_0_0_2px_rgba(16,185,129,0.12)] disabled:text-[var(--text-primary-color)] disabled:opacity-60 dark:!border-slate-700 max-sm:!min-h-[52px]"
             autoComplete="new-password"
             spellCheck={false}
           />
@@ -402,7 +402,7 @@ const AppInput = ({
           size="large"
           prefix={icon}
           disabled={disabled}
-          className="mt-2 rounded-xl !border-slate-300 placeholder:text-xs focus:!border-emerald-500 focus:!shadow-[0_0_0_2px_rgba(16,185,129,0.12)] disabled:text-[var(--text-primary-color)] disabled:opacity-60 dark:!border-slate-700"
+          className="mt-2 rounded-xl !border-slate-300 placeholder:text-xs focus:!border-emerald-500 focus:!shadow-[0_0_0_2px_rgba(16,185,129,0.12)] disabled:text-[var(--text-primary-color)] disabled:opacity-60 dark:!border-slate-700 max-sm:!min-h-[52px]"
           autoComplete="off"
           spellCheck={false}
           onClick={handleInputClick}
