@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RiArrowLeftLine, RiMailCheckLine, RiShieldCheckLine, } from "react-icons/ri";
 import AppInput from "@/common/AppInput";
 import usePostData from "@/api/usePostData";
-import { showToast } from "@/components/Toast/Toast";
+import { showToast } from "@/components/toastify/Toast";
 import { emailConfirmationValidationSchema } from "@/utils/validationSchema";
 
 const RESEND_SECONDS = 60;

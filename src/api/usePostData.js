@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setAuthData } from '../redux/slices/authDataSlice';
 import { PostService } from './services/requests-service';
-import { showToast } from '@/components/Toast/Toast';
+import { showToast } from '@/components/toastify/Toast';
 
 const usePostData = () => {
     const [loading, setLoading] = useState(false);

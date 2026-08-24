@@ -114,9 +114,23 @@ const AppInput = ({
     };
   }, []);
 
-  const handleInputClick = () => {
+  const handleInputClick = (event) => {
+    props.onClick?.(event);
+
     if (type === "color") {
       setIsPickerVisible((current) => !current);
+    }
+
+    if (type === "date" && !disabled) {
+      const dateInput = event.target.closest?.(
+        'input[type="date"]',
+      );
+
+      dateInput?.focus();
+
+      if (typeof dateInput?.showPicker === "function") {
+        dateInput.showPicker();
+      }
     }
   };
 
@@ -159,6 +173,7 @@ const AppInput = ({
     "email",
     "password",
     "color",
+    "date",
   ].includes(type);
 
   const fieldError = getIn(errors, name);
@@ -317,7 +332,7 @@ const AppInput = ({
           }
           size="large"
           disabled={disabled}
-          className="w-full overflow-hidden placeholder:text-xs disabled:opacity-60"
+          className="app-input-select w-full overflow-hidden placeholder:text-xs disabled:opacity-60"
         />
       ) : type === "color" ? (
         <div className="relative">
@@ -335,7 +350,7 @@ const AppInput = ({
             size="large"
             prefix={icon}
             disabled={disabled}
-            className="mt-2 rounded-xl border-[#A2A1A866] pl-9 placeholder:text-xs disabled:text-[var(--text-primary-color)] disabled:opacity-60"
+            className="mt-2 rounded-xl !border-slate-300 pl-9 placeholder:text-xs focus:!border-emerald-500 focus:!shadow-[0_0_0_2px_rgba(16,185,129,0.12)] disabled:text-[var(--text-primary-color)] disabled:opacity-60 dark:!border-slate-700"
             autoComplete="off"
             spellCheck={false}
           />
@@ -404,7 +419,7 @@ const AppInput = ({
               </button>
             }
             disabled={disabled}
-            className="mt-2 rounded-xl border-[#A2A1A866] placeholder:text-xs disabled:text-[var(--text-primary-color)] disabled:opacity-60"
+            className="mt-2 rounded-xl !border-slate-300 placeholder:text-xs focus:!border-emerald-500 focus:!shadow-[0_0_0_2px_rgba(16,185,129,0.12)] disabled:text-[var(--text-primary-color)] disabled:opacity-60 dark:!border-slate-700"
             autoComplete="new-password"
             spellCheck={false}
           />
@@ -437,9 +452,10 @@ const AppInput = ({
           size="large"
           prefix={icon}
           disabled={disabled}
-          className="mt-2 rounded-xl border-[#A2A1A866] placeholder:text-xs disabled:text-[var(--text-primary-color)] disabled:opacity-60"
+          className="mt-2 rounded-xl !border-slate-300 placeholder:text-xs focus:!border-emerald-500 focus:!shadow-[0_0_0_2px_rgba(16,185,129,0.12)] disabled:text-[var(--text-primary-color)] disabled:opacity-60 dark:!border-slate-700"
           autoComplete="off"
           spellCheck={false}
+          onClick={handleInputClick}
           onFocus={handleFocus}
           onBlur={handleBlur}
         />

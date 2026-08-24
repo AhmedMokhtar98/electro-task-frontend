@@ -10,12 +10,11 @@ const PageContainer = ({ children }) => {
       className="
         relative z-[1]
         mx-auto
-        h-[calc(100vh-130px)]
-        min-h-[calc(100vh-130px)]
+        h-full
+        min-h-full
         w-[96%]
         overflow-hidden
         rounded-[10px]
-        bg-[var(--bg-secondary-color)]
         transition-colors duration-300
       "
     >
@@ -51,11 +50,10 @@ const DashboardLayout = ({ children }) => {
       dir={direction}
       className="
         relative flex
-        h-screen min-h-screen w-full
+        min-h-screen w-full
         overflow-hidden
-        bg-slate-50 text-slate-900
+        bg-[linear-gradient(45deg,#9effa261,#00b0ff33)]
         transition-colors duration-300
-        dark:bg-slate-950 dark:text-slate-100
       "
     >
       <DashboardSidebar />

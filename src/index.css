@@ -76,6 +76,41 @@ input[type="number"]::-webkit-outer-spin-button {
   border: none;
 }
 
+/* AppInput selects must keep their field border despite the global reset above. */
+.app-input-select.ant-select-outlined:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  background-color: #ffffff !important;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease !important;
+}
+
+.app-input-select.ant-select-outlined:not(.ant-select-disabled):hover
+  .ant-select-selector {
+  border-color: #94a3b8 !important;
+}
+
+.app-input-select.ant-select-focused.ant-select-outlined
+  .ant-select-selector {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 2px rgb(16 185 129 / 12%) !important;
+}
+
+.dark
+  .app-input-select.ant-select-outlined:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border-color: #334155 !important;
+  background-color: rgb(2 6 23 / 40%) !important;
+}
+
+.dark
+  .app-input-select.ant-select-outlined:not(.ant-select-disabled):hover
+  .ant-select-selector {
+  border-color: #475569 !important;
+}
+
 .gradient-border {
   width: 200px;
   height: 200px;

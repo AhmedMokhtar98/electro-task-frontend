@@ -22,7 +22,7 @@ import {
 
 import AppInput from "@/common/AppInput";
 import usePostData from "@/api/usePostData";
-import { showToast } from "@/components/Toast/Toast";
+import { showToast } from "@/components/toastify/Toast";
 import { resetPasswordValidationSchema } from "@/utils/validationSchema";
 
 const initialValues = {

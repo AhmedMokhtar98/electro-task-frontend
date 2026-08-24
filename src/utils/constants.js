@@ -1,8 +1,35 @@
-// Routes Constants
-export const Listing_Routes = ["tasks"];
+export const initialFilters = {
+  search: "",
+  status: "",
+  priority: "",
+  dueDate: "",
+  sortBy: "position",
+  sortOrder: "asc",
+  page: 1,
+  limit: 9,
+};
 
-// Tasks Constants
-export const tasks_search_filters = [{ label: "All", value: "all" }];
-export const tasks_filter_options = ["isActive"];
-export const tasksDateFields = [{ label: "Created At", value: "createdAt" }, { label: "Updated At", value: "updatedAt" }];
-export const tasksSortOptions = [ { label: "Name", value: "name" }];
+export const statusOptions = [
+  { label: "All statuses", value: "" },
+  { label: "To Do", value: "To Do" },
+  { label: "In Progress", value: "In Progress" },
+  { label: "Done", value: "Done" },
+];
+
+export const priorityOptions = [
+  { label: "All priorities", value: "" },
+  { label: "Low", value: "Low" },
+  { label: "Medium", value: "Medium" },
+  { label: "High", value: "High" },
+];
+
+export const sortOptions = [
+  { label: "Custom order", value: "position:asc" },
+  { label: "Newest first", value: "createdAt:desc" },
+  { label: "Oldest first", value: "createdAt:asc" },
+  { label: "Due date: earliest", value: "dueDate:asc" },
+  { label: "Due date: latest", value: "dueDate:desc" },
+  { label: "Title: A–Z", value: "title:asc" },
+  { label: "Title: Z–A", value: "title:desc" },
+];
+

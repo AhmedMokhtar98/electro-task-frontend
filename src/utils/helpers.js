@@ -125,6 +125,27 @@ export const formatDateForInput = (dateString) => {
   return date.toISOString().split("T")[0];
 };
 
+export const statusOptions = ["To Do", "In Progress", "Done"].map(
+  (value) => ({
+    label: value,
+    value,
+  }),
+);
+
+export const priorityOptions = ["Low", "Medium", "High"].map((value) => ({
+  label: value,
+  value,
+}));
+
+export const getTodayDate = () => {
+  const today = new Date();
+  const localDate = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60 * 1000,
+  );
+
+  return localDate.toISOString().slice(0, 10);
+};
+
 
 export function encryptPassword(password) {
   const SECRET_KEY_ENCRYPTION = import.meta.env.VITE_SECRET_KEY_ENCRYPTION;

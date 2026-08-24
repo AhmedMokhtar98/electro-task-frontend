@@ -1,5 +1,5 @@
 import axios from "axios";
-import { showToast } from "../../components/Toast/Toast";
+import { showToast } from "../../components/toastify/Toast";
 import { encryptPassword } from "@/utils/helpers";
 import { store } from "@/redux/store";
 import { logout } from "@/redux/slices/authDataSlice";
@@ -173,10 +173,10 @@ Axios.interceptors.request.use(
 
     encryptPasswordFields(config);
 
-    // Remove pagination parameters from non-list requests.
+    // Pagination belongs to GET collection requests.
     if (
       !isAuthEndpoint(config.url) &&
-      !config.url?.includes("/list")
+      config.method?.toLowerCase() !== "get"
     ) {
       const updatedParams = {
         ...config.params,

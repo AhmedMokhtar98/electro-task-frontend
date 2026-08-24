@@ -18,7 +18,7 @@ import {
 
 import AppInput from "@/common/AppInput";
 import usePostData from "@/api/usePostData";
-import { showToast } from "@/components/Toast/Toast";
+import { showToast } from "@/components/toastify/Toast";
 import { forgetPasswordValidationSchema } from "@/utils/validationSchema";
 
 

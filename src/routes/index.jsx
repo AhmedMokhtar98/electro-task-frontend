@@ -4,16 +4,14 @@ import { Spin } from "antd";
 import PreventRoute from "./PreventRoute";
 import PrivateRoute from "./PrivateRoute";
 import NotFoundPage from "@/common/NotFoundPage";
-// import Profile from "@/pages/profile/Profile";
+import Profile from "@/pages/profile/Profile";
 import Layout from "@/layout";
-// import Tasks from "@/pages/tasks/Tasks";
-// import TasksForm from "@/pages/tasks/CreateForm";
+import Tasks from "@/pages/tasks/Tasks";
 import Register from "@/pages/auth/Register";
 import EmailConfirmation from "@/pages/auth/EmailConfirmation";
 import ResetPassword from "@/pages/auth/ResetPassword";
 import ForgotPassword from "@/pages/auth/ForgotPassword";
 
-const Home = lazy(() => import("../pages/home/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 
 const PageLoader = () => (
@@ -42,10 +40,8 @@ const AllRoutes = () => (
 
       <Route element={<PrivateRoute />}>
         <Route element={<PrivateLayout />}>
-          <Route index element={<Home />} />
-          {/* <Route path="tasks" element={<Tasks />} /> */}
-          {/* <Route path="tasks/create" element={<TasksForm />} /> */}
-          {/* <Route path="profile" element={<Profile />} /> */}
+          <Route index element={<Tasks />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Route>
 

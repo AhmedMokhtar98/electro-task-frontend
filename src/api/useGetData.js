@@ -9,30 +9,21 @@ const useGetData = ({ route, params, onSuccess, notLoadData, loadMoreMode, disab
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingMoreData, setLoadingMoreData] = useState(false);
-    const [errors, setErrors] = useState(null);
+    const [error, setError] = useState(null);
     const [pagination, setPagination] = useState({ page: 1, limit: 10, pageNo: 1 });
 
     const location = useLocation();
     const urlParams = new URLSearchParams(location.search);
     const paramsObject = Object.fromEntries(urlParams.entries());
-    const currentRoute = location.pathname;
-    const [searchParams] = useSearchParams();
 
     const isFetchingRef = useRef(false);
-
-    // ==== Logout handler ====
-    const handleLogout = (error, route) => {
-        setErrors(error?.response?.data?.error);
-    };
 
     // ==== API Fetcher ====
     const getApi = async ({ params, loadMoreMode = false, disableUrlParam = false }) => {
         try {
             if (!loadMoreMode) setLoading(true);
 
-            const validatedParams = paramsValidate(
-                (loadMoreMode || disableUrlParam) ? params : { ...paramsObject, ...params }
-            );
+            const validatedParams = paramsValidate( (loadMoreMode || disableUrlParam) ? params : { ...paramsObject, ...params } );
             if (skippedQueryParamsKeys) {
                 skippedQueryParamsKeys.forEach(key => {
                     delete validatedParams[key];
@@ -57,11 +48,12 @@ const useGetData = ({ route, params, onSuccess, notLoadData, loadMoreMode, disab
 
             return res;
         } catch (error) {
-            const status = error?.response?.status;
-            const errorMessage = error?.response?.data?.error;
-
-            setErrors(errorMessage);
-            if (status === 401 || status === 403) handleLogout(error, route);
+            const errorMessage =
+                error?.response?.data?.error ||
+                error?.response?.data?.message ||
+                error?.message ||
+                "Unable to load data";
+            setError(errorMessage);
             return { error: errorMessage };
         } finally {
             setLoading(false);
@@ -129,7 +121,7 @@ const useGetData = ({ route, params, onSuccess, notLoadData, loadMoreMode, disab
         data,
         count,
         setCount,
-        errors,
+        error,
         setData,
         getData: getApi,
         loadMoreData,

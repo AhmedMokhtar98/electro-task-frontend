@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setAuthData } from '../redux/slices/authDataSlice';
 import { PutService } from './services/requests-service';
+import { showToast } from '@/components/toastify/Toast';
 
 const usePutData = () => {
     const [loading, setLoading] = useState(false);
@@ -18,17 +19,20 @@ const usePutData = () => {
         setErrors({ error: error?.response?.data?.error });
     };
 
-    const putData = async ({ route, data, params }) => {
+    const putData = async ({ route, data, params, onUploadProgress }) => {
       
         // console_log('postdata' )
         try {
             setLoading(true);
-         
             const res = await PutService({ route, data, params, onUploadProgress });
             console.log("res ====>", { route, data, res });
             setLoading(false);
             setErrors(null);
             setResData(res);
+            showToast({
+                text: res?.data?.result?.message || res?.data?.message,
+                status: true,
+            });
             return res;
 
         } catch (error) {
@@ -42,10 +46,16 @@ const usePutData = () => {
                 handleLogout(error);
             } else {
                 setErrors({ error: error?.response?.data?.error });
-                // SweetAlert({ text: error?.response?.data?.error, status: error?.response?.data?.success })
-
             }
-            return { error: error?.response?.data?.error };
+            showToast({
+                text:
+                    error?.response?.data?.error ||
+                    error?.response?.data?.message ||
+                    error?.message ||
+                    "Unable to update data",
+                status: false,
+            });
+            return { error };
         }
     };
 
