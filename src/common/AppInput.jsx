@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Checkbox, Input, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { Field, getIn, useFormikContext } from "formik";
-import { HexColorPicker } from "react-colorful";
 import { AiOutlineEye, AiOutlineEyeInvisible, } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 
@@ -152,10 +151,6 @@ const AppInput = ({
         validateField(name);
       }, 0);
     }
-  };
-
-  const handleColorChange = (newColor) => {
-    setFieldValue(name, newColor);
   };
 
   const fieldValue =
@@ -329,47 +324,7 @@ const AppInput = ({
           disabled={disabled}
           className="app-input-select w-full overflow-hidden placeholder:text-xs disabled:opacity-60"
         />
-      ) : type === "color" ? (
-        <div className="relative">
-          <Input
-            id={name}
-            name={name}
-            type="text"
-            value={fieldValue}
-            onClick={handleInputClick}
-            readOnly
-            placeholder={
-              placeholder ||
-              "Select Color"
-            }
-            size="large"
-            prefix={icon}
-            disabled={disabled}
-            className="mt-2 rounded-xl !border-slate-300 pl-9 placeholder:text-xs focus:!border-emerald-500 focus:!shadow-[0_0_0_2px_rgba(16,185,129,0.12)] disabled:text-[var(--text-primary-color)] disabled:opacity-60 dark:!border-slate-700"
-            autoComplete="off"
-            spellCheck={false}
-          />
-
-          <div
-            className="absolute left-3 top-5 h-4 w-4 rounded-md"
-            style={{
-              backgroundColor: fieldValue,
-            }}
-          />
-
-          {isPickerVisible && (
-            <div
-              ref={pickerRef}
-              className="absolute left-0 top-[50px] z-[999]"
-            >
-              <HexColorPicker
-                color={fieldValue}
-                onChange={handleColorChange}
-              />
-            </div>
-          )}
-        </div>
-      ) : type === "password" ? (
+      ) :  type === "password" ? (
         <>
           <Input
             id={name}
